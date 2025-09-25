@@ -42,7 +42,7 @@ jobs:
       - name: Checkout Infra Repo
         uses: actions/checkout@v3
         with:
-          repository: my-org/infra-repo   # repo where your Packer template lives
+          repository: AshwiniEthiraj3/springpetpacker.git   # repo where your Packer template lives
           path: infra
 
       - name: Install Packer
