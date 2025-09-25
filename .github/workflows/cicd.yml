@@ -43,6 +43,7 @@ jobs:
         uses: actions/checkout@v3
         with:
           repository: AshwiniEthiraj3/springpetpacker.git   # repo where your Packer template lives
+          ref: main
           path: infra
 
       - name: Install Packer
