@@ -56,7 +56,7 @@ jobs:
           packer build \
             -var "bucket_name=springpetclinicjar1" \
             -var "object_key=petclinic-latest.jar" \
-            -var "iam_instance_profile=packer-s3-read-profile" \
+            -var "iam_instance_profile=S3ForSpringpet" \
             petclinic-ubuntu.pkr.hcl
         env:
           AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
