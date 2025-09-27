@@ -14,7 +14,6 @@
  * limitations under the License.
  */
 
-
 /*import java.util.List;
 
 import org.springframework.data.domain.Page;
@@ -91,28 +90,29 @@ import org.springframework.web.bind.annotation.ResponseBody;
 @Controller
 class VetController {
 
-    private final VetRepository vetRepository;
+	private final VetRepository vetRepository;
 
-    public VetController(VetRepository vetRepository) {
-        this.vetRepository = vetRepository;
-    }
+	public VetController(VetRepository vetRepository) {
+		this.vetRepository = vetRepository;
+	}
 
-    // HTML view (table with vets)
-    @GetMapping("/vets.html")
-    public String showVetList(Model model) {
-        List<Vet> listVets = vetRepository.findAll(); // fetch all vets
-        model.addAttribute("listVets", listVets);
-        model.addAttribute("currentPage", 1);
-        model.addAttribute("totalPages", 1);
-        model.addAttribute("totalItems", listVets.size());
-        return "vets/vetList";
-    }
+	// HTML view (table with vets)
+	@GetMapping("/vets.html")
+	public String showVetList(Model model) {
+		List<Vet> listVets = vetRepository.findAll(); // fetch all vets
+		model.addAttribute("listVets", listVets);
+		model.addAttribute("currentPage", 1);
+		model.addAttribute("totalPages", 1);
+		model.addAttribute("totalItems", listVets.size());
+		return "vets/vetList";
+	}
 
-    // REST API (JSON/XML vets list)
-    @GetMapping({ "/vets" })
-    public @ResponseBody Vets showResourcesVetList() {
-        Vets vets = new Vets();
-        vets.getVetList().addAll(this.vetRepository.findAll());
-        return vets;
-    }
+	// REST API (JSON/XML vets list)
+	@GetMapping({ "/vets" })
+	public @ResponseBody Vets showResourcesVetList() {
+		Vets vets = new Vets();
+		vets.getVetList().addAll(this.vetRepository.findAll());
+		return vets;
+	}
+
 }
