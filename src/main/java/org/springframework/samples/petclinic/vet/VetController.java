@@ -95,6 +95,7 @@ class VetController {
 	public VetController(VetRepository vetRepository) {
 		this.vetRepository = vetRepository;
 	}
+	//
 
 	@GetMapping("/vets.html")
 	public String showVetList(Model model) {
