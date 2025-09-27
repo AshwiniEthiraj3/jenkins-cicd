@@ -96,10 +96,9 @@ class VetController {
 		this.vetRepository = vetRepository;
 	}
 
-	// HTML view (table with vets)
 	@GetMapping("/vets.html")
 	public String showVetList(Model model) {
-		List<Vet> listVets = vetRepository.findAll(); // fetch all vets
+		List<Vet> listVets = new ArrayList<>(this.vetRepository.findAll());
 		model.addAttribute("listVets", listVets);
 		model.addAttribute("currentPage", 1);
 		model.addAttribute("totalPages", 1);
@@ -107,7 +106,7 @@ class VetController {
 		return "vets/vetList";
 	}
 
-	// REST API (JSON/XML vets list)
+	// REST API (JSON/XML vets list{}
 	@GetMapping({ "/vets" })
 	public @ResponseBody Vets showResourcesVetList() {
 		Vets vets = new Vets();
