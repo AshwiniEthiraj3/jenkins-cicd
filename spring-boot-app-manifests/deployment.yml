@@ -1,0 +1,21 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: spring-petclinic
+  labels:
+    app: spring-petclinic
+  spec:
+    replicas: 2
+    selector:
+      matchLabels:
+        app: spring-petclinic
+    template:
+      metadata:
+      labels:
+        app: spring-petclinic
+      spec:
+        containers:
+        - name: spring-petclinic
+          image: ashwiniethiraj/ultimate-cicd1:replaceImageTag
+          ports:
+          - containerPort: 8080
