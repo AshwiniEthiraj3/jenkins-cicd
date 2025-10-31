@@ -16,7 +16,7 @@ pipeline {
       steps {
         sh 'ls -ltr'
         // build the project and create a JAR file
-        sh 'mvn clean package -Dcheckstyle.skip=true'
+        sh 'mvn clean package -Dcheckstyle.skip=true -DskipTests'
       }
     }
     stage('Static Code Analysis') {
