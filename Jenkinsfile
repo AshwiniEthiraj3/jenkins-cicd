@@ -5,7 +5,10 @@ pipeline {
 
     stage('Cleanup Workspace') {
       steps {
-        deleteDir()   // 🔥 This fixes permission denied errors
+        sh '''
+          echo "Cleaning workspace..."
+          sudo rm -rf * || true
+        '''
       }
     }
 
@@ -19,7 +22,7 @@ pipeline {
       agent {
         docker {
           image 'maven:3.9.6-eclipse-temurin-17'
-          args '--user root -v /var/run/docker.sock:/var/run/docker.sock'
+          args '-v /var/run/docker.sock:/var/run/docker.sock'
         }
       }
       steps {
@@ -31,7 +34,7 @@ pipeline {
       agent {
         docker {
           image 'maven:3.9.6-eclipse-temurin-17'
-          args '--user root -v /var/run/docker.sock:/var/run/docker.sock'
+          args '-v /var/run/docker.sock:/var/run/docker.sock'
         }
       }
       environment {
@@ -73,6 +76,12 @@ pipeline {
           '''
         }
       }
+    }
+  }
+
+  post {
+    always {
+      sh 'sudo rm -rf * || true'
     }
   }
 }
