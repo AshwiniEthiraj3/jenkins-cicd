@@ -1,7 +1,7 @@
 pipeline {
   agent {
     docker {
-      image 'maven:3.9.6-eclipse-temurin-17-docker'
+      image 'maven:3.9.6-eclipse-temurin-17'
       args '--user root -v /var/run/docker.sock:/var/run/docker.sock' // mount Docker socket to access the host's Docker daemon
     }
   }
@@ -30,6 +30,7 @@ pipeline {
       }
     }
     stage('Build and Push Docker Image') {
+      agent any
       environment {
         DOCKER_IMAGE = "ashwiniethiraj/ultimate-cicd1:${BUILD_NUMBER}"
         DOCKERFILE_LOCATION = "Dockerfile"
