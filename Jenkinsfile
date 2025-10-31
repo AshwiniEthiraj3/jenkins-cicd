@@ -3,12 +3,12 @@ pipeline {
 
   stages {
 
-    stage('Cleanup Workspace') {
-      steps {
-        echo "Cleaning workspace safely..."
-        cleanWs()
-      }
-    }
+   stage('Cleanup Workspace') {
+     steps {
+       cleanWs deleteDirs: true
+     }
+   }
+
 
     stage('Checkout') {
       steps {
@@ -77,10 +77,4 @@ pipeline {
     }
   }
 
-  post {
-    always {
-      echo "Cleaning after build..."
-      cleanWs()
-    }
-  }
-}
+  
