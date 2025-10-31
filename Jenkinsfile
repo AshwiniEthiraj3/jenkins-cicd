@@ -2,6 +2,13 @@ pipeline {
   agent any
 
   stages {
+
+    stage('Cleanup Workspace') {
+      steps {
+        deleteDir()   // 🔥 This fixes permission denied errors
+      }
+    }
+
     stage('Checkout') {
       steps {
         git branch: 'main', url: 'https://github.com/AshwiniEthiraj3/jenkins-cicd.git'
@@ -38,7 +45,7 @@ pipeline {
     }
 
     stage('Build & Push Docker Image') {
-      agent any   // <-- HOST MACHINE
+      agent any
       environment {
         DOCKER_IMAGE = "ashwiniethiraj/ultimate-cicd1:${BUILD_NUMBER}"
       }
