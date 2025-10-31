@@ -5,10 +5,8 @@ pipeline {
 
     stage('Cleanup Workspace') {
       steps {
-        sh '''
-          echo "Cleaning workspace..."
-          sudo rm -rf * || true
-        '''
+        echo "Cleaning workspace safely..."
+        cleanWs()
       }
     }
 
@@ -23,7 +21,6 @@ pipeline {
         docker {
           image 'maven:3.9.6-eclipse-temurin-17'
           args "-u \$(id -u):\$(id -g) -v /var/run/docker.sock:/var/run/docker.sock"
-
         }
       }
       steps {
@@ -35,7 +32,7 @@ pipeline {
       agent {
         docker {
           image 'maven:3.9.6-eclipse-temurin-17'
-          args '-v /var/run/docker.sock:/var/run/docker.sock'
+          args "-u \$(id -u):\$(id -g) -v /var/run/docker.sock:/var/run/docker.sock"
         }
       }
       environment {
@@ -72,7 +69,7 @@ pipeline {
             git config user.name "Ashwini Ethiraj3"
             sed -i "s/replaceImageTag/${BUILD_NUMBER}/g" spring-boot-app-manifests/deployment.yml
             git add .
-            git commit -m "Update image tag ${BUILD_NUMBER}"
+            git commit -m "Update image tag ${BUILD_NUMBER}" || echo "No changes to commit"
             git push https://${TOKEN}@github.com/AshwiniEthiraj3/jenkins-cicd HEAD:main
           '''
         }
@@ -82,7 +79,8 @@ pipeline {
 
   post {
     always {
-      sh 'sudo rm -rf * || true'
+      echo "Cleaning after build..."
+      cleanWs()
     }
   }
 }
