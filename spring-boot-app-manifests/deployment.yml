@@ -16,6 +16,6 @@ metadata:
       spec:
         containers:
         - name: spring-petclinic
-          image: ashwiniethiraj/ultimate-cicd1:replaceImageTag
+          image: ashwiniethiraj/ultimate-cicd1:14
           ports:
           - containerPort: 8080

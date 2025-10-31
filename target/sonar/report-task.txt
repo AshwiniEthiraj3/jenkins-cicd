@@ -1,0 +1,6 @@
+projectKey=org.springframework.samples:spring-petclinic
+serverUrl=http://3.80.73.56:9000
+serverVersion=9.9.3.79811
+dashboardUrl=http://3.80.73.56:9000/dashboard?id=org.springframework.samples%3Aspring-petclinic
+ceTaskId=AZo4pn8BM9r41VhoPSZb
+ceTaskUrl=http://3.80.73.56:9000/api/ce/task?id=AZo4pn8BM9r41VhoPSZb
