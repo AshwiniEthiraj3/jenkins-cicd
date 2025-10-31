@@ -59,7 +59,7 @@ pipeline {
           sh '''
             git config user.email "ashwiniethiraj@gmail.com"
             git config user.name "Ashwini Ethiraj3"
-            sed -i "s/replaceImageTag/${BUILD_NUMBER}/g" /spring-boot-app-manifests/deployment.yml
+            sed -i "s/replaceImageTag/${BUILD_NUMBER}/g" spring-boot-app-manifests/deployment.yml
             git add .
             git commit -m "Update image tag ${BUILD_NUMBER}"
             git push https://${TOKEN}@github.com/AshwiniEthiraj3/jenkins-cicd HEAD:main
