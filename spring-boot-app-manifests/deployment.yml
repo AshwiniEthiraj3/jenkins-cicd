@@ -4,18 +4,18 @@ metadata:
   name: spring-petclinic
   labels:
     app: spring-petclinic
-  spec:
-    replicas: 2
-    selector:
-      matchLabels:
-        app: spring-petclinic
-    template:
-      metadata:
+spec:    # <-- this must be at root, NOT under metadata
+  replicas: 2
+  selector:
+    matchLabels:
+      app: spring-petclinic
+  template:
+    metadata:
       labels:
         app: spring-petclinic
-      spec:
-        containers:
-        - name: spring-petclinic
-          image: ashwiniethiraj/ultimate-cicd1:replaceImageTag
-          ports:
-          - containerPort: 8080
+    spec:
+      containers:
+      - name: spring-petclinic
+        image: ashwiniethiraj/ultimate-cicd1:replaceImageTag
+        ports:
+        - containerPort: 8080
